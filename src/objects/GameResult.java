@@ -101,7 +101,7 @@ public class GameResult implements Comparable<Object>
 					{
 						hostTimers.set(i, Integer.parseInt(data[15 + i]));
 					}
-					catch(java.lang.ArrayIndexOutOfBoundsException ex)
+					catch(java.lang.ArrayIndexOutOfBoundsException | java.lang.NumberFormatException ex)
 					{
 						hostTimers.set(i, -1);
 					}
@@ -112,7 +112,7 @@ public class GameResult implements Comparable<Object>
 					{
 						awayTimers.set(i, Integer.parseInt(data[15 + numTimers + i]));
 					}
-					catch(java.lang.ArrayIndexOutOfBoundsException ex)
+					catch(java.lang.ArrayIndexOutOfBoundsException | java.lang.NumberFormatException ex)
 					{
 						awayTimers.set(i, -1);
 					}
@@ -124,7 +124,7 @@ public class GameResult implements Comparable<Object>
 				{
 					hostTimers.add(Integer.parseInt(data[15 + i]));
 				}
-				catch(java.lang.ArrayIndexOutOfBoundsException ex)
+				catch(java.lang.ArrayIndexOutOfBoundsException | java.lang.NumberFormatException ex)
 				{
 					hostTimers.add(-1);
 				}
@@ -132,7 +132,7 @@ public class GameResult implements Comparable<Object>
 				{
 					awayTimers.add(Integer.parseInt(data[15 + numTimers + i]));
 				}
-				catch(java.lang.ArrayIndexOutOfBoundsException ex)
+				catch(java.lang.ArrayIndexOutOfBoundsException | java.lang.NumberFormatException ex)
 				{
 					awayTimers.add(-1);
 				}
