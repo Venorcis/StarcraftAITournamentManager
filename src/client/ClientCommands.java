@@ -222,6 +222,7 @@ public class ClientCommands
 		String bwapiDest = ClientSettings.Instance().ClientStarcraftDir + "\\bwapi-data\\bwapi.ini";
 		BWAPISettings bwapi = instructions.bwapi;
 		Bot thisBot  = instructions.isHost ? instructions.hostBot : instructions.awayBot;
+		String ai = thisBot.isProxyBot() ? "NULL" : ("bwapi-data\\AI\\" + thisBot.getName() + ".dll");
 		Bot otherBot = instructions.isHost ? instructions.awayBot : instructions.hostBot;
 		int id = instructions.game_id;
 	
@@ -236,8 +237,7 @@ public class ClientCommands
 		BWINI += ";         DLLs specified, then the last entry is used." + newLine;
 		BWINI += ";   - Use a colon to forcefully load the revision specified." + newLine;
 		BWINI += ";   - Example: SomeAI.dll:3400, SecondInstance.dll, ThirdInstance.dll" + newLine;
-		BWINI += "ai     = bwapi-data\\AI\\" + thisBot.getName() + ".dll" + newLine;
-		BWINI += "ai_dbg = bwapi-data\\AI\\" + thisBot.getName() + ".dll" + newLine + newLine;
+		BWINI += "ai = " + ai + newLine + newLine;
 
 		BWINI += "; Used only for tournaments" + newLine;
 		BWINI += "; Tournaments can only be run in RELEASE mode" + newLine;

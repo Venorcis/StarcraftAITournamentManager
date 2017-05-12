@@ -132,7 +132,7 @@ public class ServerSettings
 			// Check if all the bot files exist
 			if (!new File(botDir).exists()) 		{ System.err.println("Bot Error: " + b.getName() + " bot directory " + botDir + " does not exist."); valid = false; }
 			if (!new File(botAIDir).exists()) 		{ System.err.println("Bot Error: " + b.getName() + " bot AI directory " + botAIDir + " does not exist."); valid = false; }
-			if (!new File(botDLLFile).exists()) 	{ System.err.println("Bot Error: " + b.getName() + " bot dll file " + botDLLFile + " does not exist."); valid = false; }
+			if (!b.isProxyBot() && !new File(botDLLFile).exists()) 	{ System.err.println("Bot Error: " + b.getName() + " bot dll file " + botDLLFile + " does not exist."); valid = false; }
 			if (!new File(botWriteDir).exists()) 	{ System.err.println("Bot Error: " + b.getName() + " bot write directory " + botWriteDir + " does not exist."); valid = false; }
 			if (!new File(botReadDir).exists()) 	{ System.err.println("Bot Error: " + b.getName() + " bot read directory " + botReadDir + " does not exist."); valid = false; }
 			if (!new File(botBWAPIReq).exists()) 	{ System.err.println("Bot Error: " + b.getName() + " bot required BWAPI files " + botBWAPIReq + " does not exist."); valid = false; }
