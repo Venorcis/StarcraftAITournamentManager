@@ -35,7 +35,7 @@ public class GameStorage
 	
 	public boolean hasMoreGames()
 	{
-		return currentGameIndex < allGames.size() - 1;
+		return currentGameIndex < allGames.size();
 	}
 	
 	public Game getNextGame()
