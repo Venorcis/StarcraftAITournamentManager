@@ -65,6 +65,7 @@ public class GameListGenerator
 				roundNum++;
 			}
 		}
+		Collections.shuffle(games);
 		
 		int gameID = 0;
 		for (Object[] game : games)
