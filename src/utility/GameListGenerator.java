@@ -1,7 +1,7 @@
 package utility;
 
 import java.io.*;
-import java.util.Vector;
+import java.util.*;
 
 import objects.Bot;
 import objects.Map;
@@ -41,9 +41,9 @@ public class GameListGenerator
 
 	public static void generateRoundRobin(int rounds, Vector<Map> maps, Vector<Bot> bots, BufferedWriter out) throws IOException 
 	{
-		int gameID = 0;
 		int roundNum = 0;
 		
+		List<String[]> games = new LinkedList<>();
 		for (int i = 0; i < rounds; i++) 
 		{
 			for(Map m : maps)
@@ -54,18 +54,23 @@ public class GameListGenerator
 					{						
 						if (roundNum % 2 == 0) 
 						{
-							out.write(String.format("%7d %5d %20s %20s %35s", gameID, roundNum, bots.get(j).getName(), bots.get(k).getName(), m.getMapName()) + System.getProperty("line.separator"));
-							gameID++;
+							games.add(new String[] { Integer.toString(roundNum), bots.get(j).getName(), bots.get(k).getName(), m.getMapName() });
 						} 
 						else 
 						{
-							out.write(String.format("%7d %5d %20s %20s %35s", gameID, roundNum, bots.get(k).getName(), bots.get(j).getName(), m.getMapName()) + System.getProperty("line.separator"));
-							gameID++;
+							games.add(new String[] { Integer.toString(roundNum), bots.get(k).getName(), bots.get(j).getName(), m.getMapName() });
 						}
 					}
 				}
 				roundNum++;
 			}
+		}
+		
+		int gameID = 0;
+		for (String[] game : games)
+		{
+			out.write(String.format("%7d %5d %20s %20s %35s", gameID, game[0], game[1], game[2], game[3]) + System.getProperty("line.separator"));
+			gameID++;
 		}
 	}
 	public static void generate1VsAll(int rounds, Vector<Map> maps, Vector<Bot> bots, BufferedWriter out) throws IOException 
