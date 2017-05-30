@@ -43,7 +43,7 @@ public class GameListGenerator
 	{
 		int roundNum = 0;
 		
-		List<String[]> games = new LinkedList<>();
+		List<Object[]> games = new LinkedList<>();
 		for (int i = 0; i < rounds; i++) 
 		{
 			for(Map m : maps)
@@ -54,11 +54,11 @@ public class GameListGenerator
 					{						
 						if (roundNum % 2 == 0) 
 						{
-							games.add(new String[] { Integer.toString(roundNum), bots.get(j).getName(), bots.get(k).getName(), m.getMapName() });
+							games.add(new Object[] { roundNum, bots.get(j).getName(), bots.get(k).getName(), m.getMapName() });
 						} 
 						else 
 						{
-							games.add(new String[] { Integer.toString(roundNum), bots.get(k).getName(), bots.get(j).getName(), m.getMapName() });
+							games.add(new Object[] { roundNum, bots.get(k).getName(), bots.get(j).getName(), m.getMapName() });
 						}
 					}
 				}
@@ -67,7 +67,7 @@ public class GameListGenerator
 		}
 		
 		int gameID = 0;
-		for (String[] game : games)
+		for (Object[] game : games)
 		{
 			out.write(String.format("%7d %5d %20s %20s %35s", gameID, game[0], game[1], game[2], game[3]) + System.getProperty("line.separator"));
 			gameID++;
