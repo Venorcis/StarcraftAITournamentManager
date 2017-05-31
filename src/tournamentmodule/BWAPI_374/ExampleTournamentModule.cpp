@@ -195,7 +195,7 @@ void ExampleTournamentAI::onFrame()
 	{
 		if (timeElapsed > timerLimits[t])
 		{
-			timerLimitsExceeded[t]++;
+		    timerLimitsExceeded[t]++;
 
 			if (timerLimitsExceeded[t] >= timerLimitsBound[t])
 			{
