@@ -4,7 +4,8 @@ using namespace BWAPI;
 
 class TournamentModuleState
 {
-
+private:
+    Timer frameTimer = new Timer();
 public:
 
 	std::string selfName;
@@ -180,12 +181,14 @@ void ExampleTournamentAI::onFrame()
 	{
 		return;
 	}
-
-	// add the framer times for this frame
-	frameTimes[frame] += BWAPI::Broodwar->getLastEventTime();
+	else if(frame == 10)
+	{
+	    frameTimer.start();
+	}
 
 	// the total time for the last frame
-	int timeElapsed = frameTimes[frame-1];
+	int timeElapsed = frameTimer.getElapsedTimeInMilliSec();
+	frameTimer.reset();
 
 	// check to see if the timer exceeded any frame time limits
 	for (size_t t(0); t<timerLimits.size(); ++t)
