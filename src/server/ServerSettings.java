@@ -260,6 +260,102 @@ public class ServerSettings
 				valid = false;
 			}
 		}
+		else if (type.equalsIgnoreCase("TMZeroSpeedTime"))
+		{
+			try
+			{
+				tmSettings.ZeroSpeedTime = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMZeroSpeedTime must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMNoKillsRealSecondsLimit"))
+		{
+			try
+			{
+				tmSettings.NoKillsRealSecondsLimit = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMNoKillsRealSecondsLimit must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMInitMaxSpeedTime"))
+		{
+			try
+			{
+				tmSettings.InitMaxSpeedTime = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMInitMaxSpeedTime must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMNoCombatSpeedUpTime"))
+		{
+			try
+			{
+				tmSettings.NoCombatSpeedUpTime = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMNoCombatSpeedUpTime must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMNoCombatSpeedUpDelay"))
+		{
+			try
+			{
+				tmSettings.NoCombatSpeedUpDelay = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMNoCombatSpeedUpDelay must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMCameraMoveTime"))
+		{
+			try
+			{
+				tmSettings.CameraMoveTime = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMCameraMoveTime must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMCameraMoveTimeMin"))
+		{
+			try
+			{
+				tmSettings.CameraMoveTimeMin = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMCameraMoveTimeMin must be an integer");
+				valid = false;
+			}
+		}
+		else if (type.equalsIgnoreCase("TMWatchScoutWorkerUntil"))
+		{
+			try
+			{
+				tmSettings.WatchScoutWorkerUntil = Integer.parseInt(st.nextToken());
+			}
+			catch (Exception e)
+			{
+				System.err.println("ServerSettings: TMWatchScoutWorkerUntil must be an integer");
+				valid = false;
+			}
+		}
 		else if (type.equalsIgnoreCase("TMTimeout"))
 		{
 			try

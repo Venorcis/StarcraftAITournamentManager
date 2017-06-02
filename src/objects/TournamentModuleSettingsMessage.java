@@ -7,7 +7,15 @@ public class TournamentModuleSettingsMessage implements Message
 	
 	public int 					LocalSpeed				= 0;
 	public int 					FrameSkip				= 0;
-	public int					GameFrameLimit			= 85714;
+	public int					GameFrameLimit			= 86400;
+	public int					ZeroSpeedTime 			= 43200;
+	public int					NoKillsRealSecondsLimit = 300;
+	public int					InitMaxSpeedTime 		= 1440;
+	public int					NoCombatSpeedUpTime     = 9600;
+	public int					NoCombatSpeedUpDelay    = 480;
+	public int					CameraMoveTime     	    = 250;
+	public int					CameraMoveTimeMin       = 50;
+	public int					WatchScoutWorkerUntil   = 7500;
 	
 	public Vector<Integer>		TimeoutLimits			= new Vector<Integer>();
 	public Vector<Integer>		TimeoutBounds			= new Vector<Integer>();
@@ -35,8 +43,16 @@ public class TournamentModuleSettingsMessage implements Message
 		tm += "LocalSpeed "         + LocalSpeed     + newLine;
 		tm += "FrameSkip "          + FrameSkip      + newLine;
 		tm += "GameFrameLimit "     + GameFrameLimit + newLine;
+		tm += "ZeroSpeedTime "      + ZeroSpeedTime + newLine;
+		tm += "NoKillsRealSecondsLimit " + NoKillsRealSecondsLimit + newLine;
+		tm += "InitMaxSpeedTime "   + InitMaxSpeedTime + newLine;
+		tm += "NoCombatSpeedUpTime " + NoCombatSpeedUpTime + newLine;
+		tm += "NoCombatSpeedUpDelay " + NoCombatSpeedUpDelay + newLine;
+		tm += "CameraMoveTime "     + CameraMoveTime   + newLine;
+		tm += "CameraMoveTimeMin "  + CameraMoveTimeMin + newLine;
+		tm += "WatchScoutWorkerUntil " + WatchScoutWorkerUntil + newLine;
 		tm += "DrawBotNames "       + DrawBotNames     + newLine;
-		tm += "DrawTournamentInfo " + DrawTournamentInfo     + newLine;
+		tm += "DrawTournamentInfo " + DrawTournamentInfo + newLine;
 		tm += "DrawUnitInfo "       + DrawUnitInfo     + newLine;
 		
 		for (int i = 0; i < TimeoutLimits.size(); ++i)
