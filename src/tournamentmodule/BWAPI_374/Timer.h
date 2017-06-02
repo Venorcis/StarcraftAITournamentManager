@@ -79,7 +79,22 @@ public:
 			gettimeofday(&endCount, NULL);
 		#endif
 	}
-	
+	void reset()
+	{
+	    stop();
+	    #ifdef WIN32
+            QueryPerformanceFrequency(&frequency);
+            startCount.QuadPart = 0;
+            endCount.QuadPart = 0;
+        #else
+            startCount.tv_sec = startCount.tv_usec = 0;
+            endCount.tv_sec = endCount.tv_usec = 0;
+        #endif
+
+		startTimeInMicroSec = 0;
+		endTimeInMicroSec = 0;
+		start();
+	}
     double getElapsedTimeInMicroSec()
 	{
 		#ifdef WIN32
