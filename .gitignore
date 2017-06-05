@@ -3,12 +3,8 @@
 *.project
 target
 .settings
-client/client.jar
-server/server.jar
-server/bots/*
+*.jar
 *.REP
-server/winpercentage.txt
-server/results.txt
-server/games.txt
+server/*.txt
 server/html/*.html
 server/html/*.txt
