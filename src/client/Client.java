@@ -473,10 +473,10 @@ public class Client extends Thread
 		{
 			try { Thread.sleep(5000); } catch (Exception e) {}
 			dir = new java.io.File(ClientSettings.Instance().ClientStarcraftDir + "maps\\replays");
-			if(dir.list().length>0)
+			if(dir.list()!=null && dir.list().length>0)
 			{
 				java.io.File subDir=dir.listFiles()[0];
-				if(subDir.list().length>0)
+				if(subDir.list()!=null && subDir.list().length>0)
 				{
 					fileExists=true;
 				}
