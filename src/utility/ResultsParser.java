@@ -109,7 +109,10 @@ public class ResultsParser
 			GameResult result = results.get(i);
 			
 			// if the game didn't start for either bot, don't parse this result
-			if (result.finalFrame <= 0)
+			// VINCENT: also don't include the game if one of the bots timed out (lagged) 
+			// or if the scores are equal at the end (that just gives the 1st player the win)
+			if (result.finalFrame <= 0 || (result.crashName.isEmpty() 
+					&& (!result.timeOutName.isEmpty() || result.awayScore == result.hostScore)))
 			{
 				continue;
 			}

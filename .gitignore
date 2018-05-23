@@ -8,3 +8,4 @@ target
 server/*.txt
 server/html/*.html
 server/html/*.txt
+/bin/
