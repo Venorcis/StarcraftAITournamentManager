@@ -149,11 +149,11 @@ public class Server  extends Thread
 			if (ServerSettings.Instance().DetailedResults.equalsIgnoreCase("yes") && iter % 30 == 0)
 			{
 				log("Generating All Results File...\n");
-				rp.writeDetailedResultsHTML("html/results.html");
+				rp.writeDetailedResultsHTML("replays/results.html");
 				log("Generating All Results File Complete!\n");
 			}
 			
-			writeHTMLFile(headerHTML + entrantsHTML + schedulerHTML + resultsHTML + footerHTML, "html/index.html");
+			writeHTMLFile(headerHTML + entrantsHTML + schedulerHTML + resultsHTML + footerHTML, "replays/index.html");
 		}
 		catch (Exception e)
 		{
