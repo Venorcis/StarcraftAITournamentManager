@@ -2,6 +2,7 @@ package utility;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import objects.Bot;
 import objects.Map;
@@ -9,7 +10,7 @@ import objects.Map;
 public class GameListGenerator 
 {
 
-	public static void GenerateGames(int rounds, Vector<Map> maps, Vector<Bot> bots, String TournamentType) 
+	public static void GenerateGames(int rounds, Vector<Map> maps, String MapSelection, Vector<Bot> bots, String TournamentType) 
 	{
 		try 
 		{
@@ -17,13 +18,15 @@ public class GameListGenerator
 			
 			BufferedWriter out = new BufferedWriter(fstream);
 			
+			
 			if(TournamentType.equalsIgnoreCase("1VsAll"))
 			{
 				generate1VsAll(rounds, maps, bots, out);
 			}
 			else
 			{
-				generateRoundRobin(rounds, maps, bots, out);
+				boolean randomMap = MapSelection.equalsIgnoreCase("Random");
+				generateRoundRobin(rounds, maps, randomMap, bots, out);
 			}
 			
 			out.write("");
@@ -39,14 +42,21 @@ public class GameListGenerator
 		}
 	}
 
-	public static void generateRoundRobin(int rounds, Vector<Map> maps, Vector<Bot> bots, BufferedWriter out) throws IOException 
+	public static void generateRoundRobin(int rounds, Vector<Map> maps, boolean randomMap, Vector<Bot> bots, BufferedWriter out) throws IOException 
 	{
 		int roundNum = 0;
+		
+		List<Map> myMaps = new ArrayList<>(maps);
+		if(randomMap) {
+			Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
+			myMaps = new ArrayList<>(1);
+			myMaps.add(selected);
+		}
 		
 		List<Object[]> games = new LinkedList<>();
 		for (int i = 0; i < rounds; i++) 
 		{
-			for(Map m : maps)
+			for(Map m : myMaps)
 			{
 				for (int j = 0; j < bots.size(); j++) 
 				{

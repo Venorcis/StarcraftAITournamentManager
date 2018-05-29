@@ -13,6 +13,7 @@ public class ServerSettings
 {
 	public Vector<Bot> 		BotVector 			= new Vector<Bot>();
 	public Vector<Map> 		MapVector 			= new Vector<Map>();
+	public String			MapSelection   		= "All";
 	
 	public String			ServerDir			= "./";
 	public String			ServerReplayDir		= "replays/";
@@ -171,6 +172,10 @@ public class ServerSettings
 		else if (type.equalsIgnoreCase("Map"))
 		{
 			MapVector.add(new Map(st.nextToken()));
+		}
+		else if (type.equalsIgnoreCase("MapSelection"))
+		{
+			MapSelection = st.nextToken();
 		}
 		else if (type.equalsIgnoreCase("GamesListFile"))
 		{
