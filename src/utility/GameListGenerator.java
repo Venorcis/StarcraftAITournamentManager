@@ -46,16 +46,15 @@ public class GameListGenerator
 	{
 		int roundNum = 0;
 		
-		List<Map> myMaps = new ArrayList<>(maps);
-		if(randomMap) {
-			Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
-			myMaps = new ArrayList<>(1);
-			myMaps.add(selected);
-		}
-		
 		List<Object[]> games = new LinkedList<>();
 		for (int i = 0; i < rounds; i++) 
 		{
+			List<Map> myMaps = new ArrayList<>(maps);
+			if(randomMap) {
+				Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
+				myMaps = new ArrayList<>(1);
+				myMaps.add(selected);
+			}
 			for(Map m : myMaps)
 			{
 				for (int j = 0; j < bots.size(); j++) 
