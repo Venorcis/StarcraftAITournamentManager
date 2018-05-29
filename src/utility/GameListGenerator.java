@@ -49,34 +49,34 @@ public class GameListGenerator
 		List<Object[]> games = new LinkedList<>();
 		for (int i = 0; i < rounds; i++) 
 		{
-			List<Map> myMaps = new ArrayList<>(maps);
-			if(randomMap) {
-				Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
-				myMaps = new ArrayList<>(1);
-				myMaps.add(selected);
-			}
-			for(Map m : myMaps)
+			for (int j = 0; j < bots.size(); j++) 
 			{
-				for (int j = 0; j < bots.size(); j++) 
+				for (int k = j+1; k < bots.size(); k++) 
 				{
-					for (int k = j+1; k < bots.size(); k++) 
-					{						
+					List<Map> myMaps = new ArrayList<>(maps);
+					if(randomMap) {
+						Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
+						myMaps = new ArrayList<>(1);
+						myMaps.add(selected);
+					}
+					for(Map m : myMaps)
+					{
 						if (roundNum % 2 == 0) 
 						{
 							games.add(new Object[] { roundNum, bots.get(j).getName(), bots.get(k).getName(), m.getMapName() });
-						} 
+						}
 						else 
 						{
 							games.add(new Object[] { roundNum, bots.get(k).getName(), bots.get(j).getName(), m.getMapName() });
 						}
 					}
 				}
-				roundNum++;
 			}
+			roundNum++;
 		}
-		Collections.shuffle(games);
 		
 		int gameID = 0;
+		Collections.shuffle(games);
 		for (Object[] game : games)
 		{
 			out.write(String.format("%7d %5d %20s %20s %35s", gameID, game[0], game[1], game[2], game[3]) + System.getProperty("line.separator"));
