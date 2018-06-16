@@ -74,30 +74,13 @@ public class GameListGenerator
 			}
 			roundNum++;
 		}
-
-		Collections.shuffle(games);
 		
-		HashMap<String,Integer> counts = new HashMap<>(bots.size());
-		double total = bots.size();
 		int gameID = 0;
-		while(!games.isEmpty()) {
-			Iterator<Object[]> iterator = games.iterator();
-			while(iterator.hasNext()) {
-				Object[] game = iterator.next();
-				String bot1 = (String)game[1];
-				if(!counts.containsKey(bot1)) {
-					counts.put(bot1, 0);
-				}
-				String bot2 = (String)game[2];
-				if(!counts.containsKey(bot2)) {
-					counts.put(bot2, 0);
-				}
-				int expected = (int)Math.ceil((gameID+1)/total);
-				if(counts.get(bot1) < expected && counts.get(bot2) < expected) {
-					out.write(String.format("%7d %5d %20s %20s %35s", gameID++, game[0], game[1], game[2], game[3]) + System.getProperty("line.separator"));
-					iterator.remove();
-				}
-			}
+		Collections.shuffle(games);
+		for (Object[] game : games)
+		{
+			out.write(String.format("%7d %5d %20s %20s %35s", gameID, game[0], game[1], game[2], game[3]) + System.getProperty("line.separator"));
+			gameID++;
 		}
 	}
 	public static void generate1VsAll(int rounds, Vector<Map> maps, Vector<Bot> bots, BufferedWriter out) throws IOException 
