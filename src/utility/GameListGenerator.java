@@ -18,14 +18,13 @@ public class GameListGenerator
 			
 			BufferedWriter out = new BufferedWriter(fstream);
 			
-			
+			boolean randomMap = MapSelection.equalsIgnoreCase("Random");
 			if(TournamentType.equalsIgnoreCase("1VsAll"))
 			{
-				generate1VsAll(rounds, maps, bots, out);
+				generate1VsAll(rounds, maps, randomMap, bots, out);
 			}
 			else
 			{
-				boolean randomMap = MapSelection.equalsIgnoreCase("Random");
 				generateRoundRobin(rounds, maps, randomMap, bots, out);
 			}
 			
@@ -83,22 +82,28 @@ public class GameListGenerator
 			gameID++;
 		}
 	}
-	public static void generate1VsAll(int rounds, Vector<Map> maps, Vector<Bot> bots, BufferedWriter out) throws IOException 
+	public static void generate1VsAll(int rounds, Vector<Map> maps, boolean randomMap, Vector<Bot> bots, BufferedWriter out) throws IOException 
 	{
 		int gameID = 0;
 		int roundNum = 0;
 		
 		for (int i = 0; i < rounds; i++) 
 		{
-			for(Map m : maps)
+			for (int k = 1; k < bots.size(); k++) 
 			{
-				for (int k = 1; k < bots.size(); k++) 
+				List<Map> myMaps = new ArrayList<>(maps);
+				if(randomMap) {
+					Map selected = myMaps.get(ThreadLocalRandom.current().nextInt(myMaps.size()));
+					myMaps = new ArrayList<>(1);
+					myMaps.add(selected);
+				}
+				for(Map m : myMaps)
 				{
 					out.write(String.format("%7d %5d %20s %20s %35s", gameID, roundNum, bots.get(0).getName(), bots.get(k).getName(), m.getMapName()) + System.getProperty("line.separator"));
 					gameID++;
 				}
-				roundNum++;
 			}
+			roundNum++;
 		}
 	}
 }
